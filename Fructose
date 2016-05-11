@@ -6,6 +6,7 @@ except:
 from machine import Pin
 from rcswitch import RCswitch
 import time
+import machine
 
 #CONTENT = b"""\
 #HTTP/1.0 200 OK
@@ -67,10 +68,12 @@ def main(use_stream=False):
 			val = client_s.recv(4096)
 			print(val)
 			client_s.send(CONTENT % counter)
+
+		client_s.close()
 		if "GET /toggle" in val:
 			print("Toggling!")
 			r.send(3847937)
-		client_s.close()
+			machine.reset()
 		counter += 1
 		print()
 
