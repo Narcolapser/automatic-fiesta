@@ -1,4 +1,5 @@
-import time
+f = open("boot.py","w")
+v = """import time
 import network
 import socket
 import esp
@@ -18,16 +19,23 @@ s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 print("Connected! ",wlan.ifconfig()[0])
 
 s.connect(("192.168.0.17",41990))
-#s.send("18:fe:34:de:25:f8")
-s.send(str(esp.flash_id()))
+s.send("5c:cf:7f:02:4f:a5")
+#s.send(str(esp.flash_id()))
+
 
 print("Getting script")
-r = s.recv(4096)
+r = s.recv(128)
 main_str = r
-
-while len(r) == 4096:
-	r = s.recv(4096)
-	main_str += r
+s.settimeout(2)
+print("recieved {0} chars".format(len(r)))
+while len(r) > 0:
+	try:
+		r = s.recv(128)
+		print("recieved {0} chars".format(len(r)))
+		main_str += r
+	except OSError as OSE:
+		print("Nothing left to get. Moving no.")
+		break
 
 print("Recived script.")
 
@@ -35,4 +43,6 @@ main_file = open("main.py","w")
 main_file.write(main_str)
 main_file.close()
 
-print("Main has been writen.")
+print("Main has been writen.")"""
+f.write(v)
+f.close()
