@@ -1,9 +1,8 @@
-AUTOMATIC FIESTA!
-======
+# AUTOMATIC FIESTA!
+
 Because manually distributing code is annoying.
 
-Basic usage
-------
+## Basic usage
 First, setup your Automatic Fiesta Server.
 1. Clone the repository to what ever you want to be the server. I personally use a Raspberry Pi.
 2. Edit "names.json" to have the MAC addresses and names of your nodes. The name you give your node will be the name of the file you will be sending to your node.
@@ -22,8 +21,8 @@ This whole system is still very new. So far it represents one evening of fiddlin
 
 NB: The Fructose example currently uses a feature that isn't in the master branch of micropython. I'd advise avoid it for now. 
 
-Road map:
-------
+## Road map:
+
 Features Working:
 * Basic server to taht responds and gives out code.
 * boot.py script that pulls down code and saves it to main.py
