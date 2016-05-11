@@ -19,8 +19,10 @@ def getName(val):
 def getCode(name):
 	f = open(name,'r')
 	return f.read()
-
+	
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 s.bind(("192.168.0.17",41990))
 s.listen(5)
@@ -28,4 +30,3 @@ while True:
 	conn,addr = s.accept()
 	print(addr)
 	handleRequest(conn)
-
