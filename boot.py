@@ -1,8 +1,11 @@
 f = open("boot.py","w")
-v = """import time
+v = """
+import time
 import network
 import socket
 import esp
+import ubinascii
+
 
 wlan = network.WLAN()
 
@@ -19,9 +22,8 @@ s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 print("Connected! ",wlan.ifconfig()[0])
 
 s.connect(("192.168.0.17",41990))
-s.send("5c:cf:7f:02:4f:a5")
-#s.send(str(esp.flash_id()))
-
+mac = ubinascii.hexlify(network.WLAN().config('mac'),':').decode()
+s.send(mac)
 
 print("Getting script")
 r = s.recv(128)
@@ -43,6 +45,7 @@ main_file = open("main.py","w")
 main_file.write(main_str)
 main_file.close()
 
-print("Main has been writen.")"""
+print("Main has been writen.")
+"""
 f.write(v)
 f.close()
