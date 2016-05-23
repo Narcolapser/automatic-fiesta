@@ -17,8 +17,11 @@ def getName(val):
 	return names[val]
 
 def getCode(name):
-	f = open(name,'r')
-	return f.read()
+	codeFiles = []
+	for i in name:
+		with open(i,'r') as f:
+			codeFiles.append((i,f.read))
+	return codeFiles
 	
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 

@@ -1,11 +1,14 @@
 f = open("boot.py","w")
-v = """
+#v = """
 import time
 import network
 import socket
 import esp
 import ubinascii
+import json
 
+def getFile(name):
+	
 
 wlan = network.WLAN()
 
@@ -39,11 +42,12 @@ while len(r) > 0:
 		print("Nothing left to get. Moving no.")
 		break
 
-print("Recived script.")
+print("Received script(s).")
 
-main_file = open("main.py","w")
-main_file.write(main_str)
-main_file.close()
+for script,code in json.loads(main_str):
+	script_file = open("main.py","w")
+	script_file.write(main_str)
+	script_file.close()
 
 print("Main has been writen.")
 """
