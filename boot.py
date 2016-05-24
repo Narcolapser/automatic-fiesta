@@ -1,5 +1,5 @@
 f = open("boot.py","w")
-#v = """
+v = """
 import time
 import network
 import socket
@@ -7,8 +7,27 @@ import esp
 import ubinascii
 import json
 
-def getFile(name):
-	
+def parseFetch(val):
+	remaining = val[0:8]
+	payload = val[8:]
+	return (remaining,payload)
+
+def fetch(name,s):
+	s.send(name)
+	remaining,ret = praseFetch(s.recv(128))
+	remaining = int(remaining)
+	print("recieved {0} chars".format(len(r)))
+	while remaining > 120:
+		try:
+			remaining,payload = parseFetch(s.recv(128))
+			remaining = int(remaining)
+			ret += payload
+			print("recieved {0} chars with {1} left to go.".format(len(payload),remaining))
+		except OSError as OSE:
+			print("Nothing left to get. Moving no.")
+			break
+	print("Got all of {0} it had a total of {1} bytes".format(name,len(ret)))
+	return ret
 
 wlan = network.WLAN()
 
@@ -21,26 +40,18 @@ while wlan.status() != network.STAT_GOT_IP:
 	time.sleep_ms(100)
 	print("Nope!",wlan.status(),failsafe)
 
-s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 print("Connected! ",wlan.ifconfig()[0])
+s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
 s.connect(("192.168.0.17",41990))
 mac = ubinascii.hexlify(network.WLAN().config('mac'),':').decode()
 s.send(mac)
 
-print("Getting script")
-r = s.recv(128)
-main_str = r
 s.settimeout(2)
-print("recieved {0} chars".format(len(r)))
-while len(r) > 0:
-	try:
-		r = s.recv(128)
-		print("recieved {0} chars".format(len(r)))
-		main_str += r
-	except OSError as OSE:
-		print("Nothing left to get. Moving no.")
-		break
+
+print("Getting script")
+
+main_str = fetch("Fructose",s)
 
 print("Received script(s).")
 

@@ -5,11 +5,22 @@ def handleRequest(conn):
 	print(conn)
 	val = conn.recv(4096)
 	name = getName(val)
+	print(name)
 	conn.send(getCode(name))
 	#if val == "5c:cf:7f:02:4f:a5":
 		#conn.send("print('Hello my name is Glucose')")
 	#elif val == "18:fe:34:de:25:f8":
 		#conn.send("print('Hello my name is Fructose')")
+
+def sendFile(val,conn):
+	while len(val) > 120:
+		payload = len(val)
+		print(payload)
+		payload += val[0:120]
+		conn.send(payload)
+	payload = len(val)
+	print(payload)
+	payload += val
 
 def getName(val):
 	f = open("names.json",'r')
