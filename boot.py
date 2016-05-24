@@ -14,7 +14,7 @@ def parseFetch(val):
 
 def fetch(name,s):
 	s.send(name)
-	remaining,ret = praseFetch(s.recv(128))
+	remaining,ret = parseFetch(s.recv(128))
 	remaining = int(remaining)
 	print("recieved {0} chars".format(len(r)))
 	while remaining > 120:
@@ -35,7 +35,7 @@ failsafe = 0
 
 while wlan.status() != network.STAT_GOT_IP:
 	failsafe += 1
-	if failsafe > 100:
+	if failsafe > 500:
 		break
 	time.sleep_ms(100)
 	print("Nope!",wlan.status(),failsafe)
@@ -46,12 +46,12 @@ s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.connect(("192.168.0.17",41990))
 mac = ubinascii.hexlify(network.WLAN().config('mac'),':').decode()
 s.send(mac)
-
+name = s.recv(128)
 s.settimeout(2)
-
+print(name)
 print("Getting script")
 
-main_str = fetch("Fructose",s)
+main_str = fetch(name,s)
 
 print("Received script(s).")
 
