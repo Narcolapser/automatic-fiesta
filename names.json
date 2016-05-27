@@ -2,18 +2,18 @@
 	"18:fe:34:de:25:f8":
 	{
 		"Name":"Fructose",
+		"Main":"Fructose.py",
 		"Files":
 		[
-			"Fructose.py",
 			"AutomaticFiesta.py"
 		]
 	},
 	"5c:cf:7f:02:4f:a5":
 	{
 		"Name":"Glucose",
+		"Main":"Glucose.py",
 		"Files":
 		[
-			"Glucose.py",
 			"AutomaticFiesta.py"
 		]
 	}
