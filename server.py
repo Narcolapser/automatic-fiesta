@@ -11,6 +11,8 @@ def handleRequest(conn):
 	conn.settimeout(5)
 	while fname:
 		try:
+			while fname == "12345678": fname = conn.recv(128)
+			if fname == "Complete": break
 			print("sending file: {0}".format(fname))
 			code = getCode(fname)
 			sendFile(code,conn)
@@ -21,8 +23,6 @@ def handleRequest(conn):
 		except Exception as e:
 			print(e)
 			break
-	
-	
 
 def sendFile(val,conn):
 	while len(val) > 120:
