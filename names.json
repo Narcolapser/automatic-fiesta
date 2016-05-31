@@ -14,7 +14,7 @@
 		"Main":"Glucose.py",
 		"Files":
 		[
-			"TelnetFiesta.py"
+			"WebFiesta.py"
 		]
 	}
 }

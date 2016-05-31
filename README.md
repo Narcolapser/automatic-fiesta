@@ -24,12 +24,13 @@ NB: The Fructose example currently uses a feature that isn't in the master branc
 ## Road map:
 
 Features Working:
-* Basic server to taht responds and gives out code.
+* Basic server to that responds and gives out code.
 * boot.py script that pulls down code and saves it to main.py
-
-Features to work on:
 * Master getting the normal MAC address out of the ESP8266 MicroPython instance.
 * Have the ability for multiple files to be transfered.
+* Add default methods to the Automatic-Fiesta server for basic maintenance. Most noteably, reboot. This is done through telnet.
+
+Features to work on:
 * Have the server warn that the total size of the script(s) to be transfered is bigger than what some or all ESP boards can handle.
 * Create a simple default server that can take the user's command and wrap it up nicely. So if you want to make a blink it works like:
 ```
@@ -41,4 +42,3 @@ Features to work on:
     af.run()
     #now if you go to 192.esp.82.66:8080/blink it calls the blink function! easy!
 ```
-* Add default methods to the Automatic-Fiesta server for basic maintenance. Most noteably, reboot.
