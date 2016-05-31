@@ -11,33 +11,17 @@ def parseFetch(val):
 	print(val)
 	return (remaining,payload)
 
-def fetch(name,s):
-	s.send(name)
-	remaining,ret = parseFetch(s.recv(128))
-	s.send("12345678")
-	remaining = int(remaining)
-	print("recieved {0} chars".format(len(ret)))
-	while remaining > 120:
-		try:
-			remaining,payload = parseFetch(s.recv(128))
-			s.send("12345678")
-			remaining = int(remaining)
-			ret += payload
-			print("recieved {0} chars with {1} left to go.".format(len(payload),remaining))
-		except OSError as OSE:
-			print(ret)
-			print("Nothing left to get. Moving no.")
-			break
-	print("Got all of {0} it had a total of {1} bytes".format(name,len(ret)))
-	return ret
-
-def fetchWrite(name,s):
+def fetch(name,s,saveName=None):
 	s.send(name)
 	remaining,ret = parseFetch(s.recv(128))
 	s.send("12345678")
 	remaining = int(remaining)
 	total = 0
-	script_file = open(name,"w")
+	if saveName:
+		script_file = open(saveName,"w")
+	else:
+		script_file = open(name,"w")
+	script_file.write(ret)
 	print("recieved {0} chars".format(len(ret)))
 	while remaining > 120:
 		try:
@@ -49,12 +33,12 @@ def fetchWrite(name,s):
 			print("recieved {0} chars with {1} left to go.".format(len(payload),remaining))
 		except OSError as OSE:
 			print(ret)
-			print("Nothing left to get. Moving no.")
+			print("Nothing left to get. Moving on.")
 			break
 	print("Got all of {0} it had a total of {1} bytes".format(name,total))
 	script_file.close()
 	return total
-""" v = """
+	
 def boot():
 	wlan = network.WLAN()
 
@@ -85,16 +69,12 @@ def boot():
 	print(config["Main"])
 	print("Getting script")
 
-	main_str = fetch(config["Main"],s)
-	script_file = open("main.py",'w')
-	script_file.write(main_str)
-	script_file.close()
-
+	main_str = fetch(config["Main"],s,"main.py")
 	print("Received main.")
 
 	print("There are {0} files to get next.".format(len(config["Files"])))
 	for script in config["Files"]:
-		script_string = fetchWrite(script,s)
+		script_string = fetch(script,s)
 
 	s.send("Complete")
 	s.close()

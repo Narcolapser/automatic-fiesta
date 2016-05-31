@@ -13,6 +13,7 @@ def handleRequest(conn):
 		try:
 			while fname == "12345678": fname = conn.recv(128)
 			if fname == "Complete": break
+			while fname[0:8] == "12345678": fname = fname[8:]
 			print("sending file: {0}".format(fname))
 			code = getCode(fname)
 			sendFile(code,conn)
