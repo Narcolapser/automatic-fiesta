@@ -1,4 +1,5 @@
-#from TelnetFiesta import *
+from TelnetFiesta import *
+import gc
 import time
 
 def listdir(val,telServer=None):
@@ -6,20 +7,27 @@ def listdir(val,telServer=None):
 	ret = " ".join(os.listdir())
 	return ret + "\n"
 
-#server = TelnetServer(blocking=False)
-#
-#server.registerFunction("ls",listdir) #closes the connection.
-#
+telserver = TelnetServer(blocking=False)
+telserver.registerFunction("ls",listdir)
+print("Telnet Server ready")
 #while True:
-#	server.run()
+#	telserver.run()
 #	print("Look ma! no blocking!")
 #	time.sleep(1)
 
 from WebFiesta import *
 
-server = WebFiesta()
+webserver = WebFiesta(blocking=False)
+webserver.registerFunction("ls",listdir)
+print("Web Server ready")
+
+#while True:
+#	webserver.run()
+#	print("Lap")
+#	time.sleep(1)
 
 while True:
-	server.run()
-	print("Lap")
+	telserver.run()
+	webserver.run()
+	print("Both ran! Memory free:",gc.mem_free())
 	time.sleep(1)

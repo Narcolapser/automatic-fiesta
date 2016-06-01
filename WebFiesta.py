@@ -11,20 +11,25 @@ Content-Type: text/html
 
 <html>
 <head>
-<title>Success</title>
+<title>{0}</title>
 </head>
 <body>
-You have accessed an Automatic Fiesta Node. It is named "{0}". and posseses the following functions:</br>
 {1}
 </body>
 </html>
 """
 
 class WebFiesta:
-	def __init__(self,content=None,port=8080,blocking=True):
+	def __init__(self,content=None,port=8080,host="0.0.0.0",blocking=True):
 		self.PORT = port # the default port is 23, but you can change it if you like.
+		self.HOST = host
 		self.blocking = blocking
 		self.__bind()
+		
+		if not content:
+			self.content = CONTENT
+		else:
+			self.content = content
 
 		#these are just some default functions.
 		self.functions = {}
@@ -43,10 +48,16 @@ class WebFiesta:
 			self.sock.bind((self.HOST, self.PORT))
 			self.sock.listen(10)
 		except Exception as msg:
-			print("Binding error: ",msg)
-		print('Socket bind complete')
+			print("Web Binding error: ",msg)
+		print('Web Socket bind complete')
 
 	def run(self):
+		'''
+		ME! CALL ME! This is the main function call for the AF Web Server. When this
+		function is called it will do one of many things.
+		
+		
+		'''
 		if not self.blocking:
 			self.sock.settimeout(5)
 		else:
@@ -54,26 +65,24 @@ class WebFiesta:
 
 
 		try:
-			#wait to accept a connection 
+			#wait to accept a connection
 			self.conn, self.addr = self.sock.accept()
-			print('Connected with ' + self.addr[0] + ':' + str(self.addr[1]))
+			print('Web Connected with ' + self.addr[0] + ':' + str(self.addr[1]))
 		except OSError as e:
-			print("OS Error in connecting: ",e)
+			print("Web OS Error in connecting: ",e)
 			return
 
-		recv = self.conn.recv(4096).decode("utf-8").split("\r\n")[0].split(" ")
+		recv = self.conn.recv(1024).decode("utf-8").split("\r\n")[0].split(" ")
 
 		func,data = recv[1][1:],recv
+		print("What I got: ",func,data)
 		if func in self.functions.keys():
-			reply = self.functions[data](data,self)
+			reply = self.functions[func](data,self)
 		else:
 			reply = "Command not find.\n"
-
-		if "GET /toggle" in val:
-			print("Toggling!")
-			r.send(3847937)
-		counter += 1
-		print()
+		reply = self.content.format("Success",reply)
+		print(reply)
+		self.conn.send(reply)
 
 	def registerFunction(self,name,func):
 		'''
@@ -99,7 +108,7 @@ def getTime(val,telServer=None):
 
 def reboot(val,telServer=None):
 	if telServer:
-		telServer.conn.sendall("Rebooting...\n\000")
+		telServer.conn.sendall(telServer.content.format("Rebooting","Rebooting...\n\000"))
 		telServer.conn.close()
 
 	import machine

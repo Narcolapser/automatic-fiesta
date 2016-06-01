@@ -47,8 +47,8 @@ class TelnetServer:
 			self.sock.bind((self.HOST, self.PORT))
 			self.sock.listen(10)
 		except Exception as msg:
-			print("Binding error: ",msg)
-		print('Socket bind complete')
+			print("Telnet Binding error: ",msg)
+		print('Telnet Socket bind complete')
 
 	def run(self):
 		'''
@@ -84,7 +84,7 @@ class TelnetServer:
 				self.conn.recv(1024).decode("utf-8")
 				self.closed = False
 			except OSError as e:
-				print("OS Error in connecting: ",e)
+				print("Telnet OS Error in connecting: ",e)
 				return
 		recv = ""
 
@@ -93,7 +93,7 @@ class TelnetServer:
 			try:
 				recv += self.conn.recv(1024).decode("utf-8")
 			except OSError as e:
-				print("OS Error receiving: ", e)
+				print("Telnet OS Error receiving: ", e)
 				return None
 
 			if recv[-1:] == '\n':
@@ -117,7 +117,7 @@ class TelnetServer:
 				if data in self.functions.keys():
 					reply = self.functions[data](data,self)
 				else:
-					reply = "Command not find.\n"
+					reply = "Telnet Command not find.\n"
 		
 			except Exception as e:
 				data = "Error: " + str(e) + "\n"
@@ -128,7 +128,7 @@ class TelnetServer:
 			data = ""
 			print((reply,))
 			self.conn.sendall(reply)
-		print("Connection closed")
+		print("Telnet Connection closed")
 
 		if self.closed:
 			self.sock.close()
