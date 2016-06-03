@@ -5,6 +5,7 @@ except:
 
 from machine import Pin
 import time
+import gc
 
 CONTENT = b"""HTTP/1.0 200 OK
 Content-Type: text/html
@@ -83,6 +84,10 @@ class WebFiesta:
 		reply = self.content.format("Success",reply)
 		print(reply)
 		self.conn.send(reply)
+		
+		del reply
+		del recv
+		gc.collect()
 
 	def registerFunction(self,name,func):
 		'''
