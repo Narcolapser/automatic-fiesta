@@ -6,6 +6,7 @@ Version: Beta 1
 
 ## Basic usage
 First, setup your Automatic Fiesta Server.
+
 1. Clone the repository to what ever you want to be the server. I personally use a Raspberry Pi.
 2. Edit "names.json" to have the MAC addresses and names of your nodes. Then decided what file you want to be that node's "main" and what other files you want to be transfered as other assets, be they code or a favicon.
 3. run the server script "python server.py"
