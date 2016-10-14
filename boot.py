@@ -46,12 +46,13 @@ s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.connect(("192.168.0.17",41990))
 mac = ubinascii.hexlify(network.WLAN().config('mac'),':').decode()
 s.send(mac)
-name = s.recv(128)
+config = json.loads(s.recv(128))
 s.settimeout(2)
-print(name)
+print(config)
+print(config["Files"][0])
 print("Getting script")
 
-main_str = fetch(name,s)
+main_str = fetch(config["Files"][0],s)
 
 print("Received script(s).")
 
