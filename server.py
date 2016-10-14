@@ -4,36 +4,50 @@ import json
 def handleRequest(conn):
 	print(conn)
 	val = conn.recv(4096)
-	name = getName(val)
-	print(name)
-	conn.send(getCode(name))
-	#if val == "5c:cf:7f:02:4f:a5":
-		#conn.send("print('Hello my name is Glucose')")
-	#elif val == "18:fe:34:de:25:f8":
-		#conn.send("print('Hello my name is Fructose')")
+	config = getConfig(val)
+	conn.send(json.dumps(config))
+	print(config)
+	fname = conn.recv(128)
+	conn.settimeout(5)
+	while fname:
+		try:
+			while fname == "12345678": fname = conn.recv(128)
+			if fname == "Complete": break
+			while fname[0:8] == "12345678": fname = fname[8:]
+			print("sending file: {0}".format(fname))
+			code = getCode(fname)
+			sendFile(code,conn)
+			fname = conn.recv(128)
+		except IOError as e:
+			print(e)
+			fname = conn.recv(128)
+		except Exception as e:
+			print(e)
+			break
 
 def sendFile(val,conn):
 	while len(val) > 120:
-		payload = len(val)
+		payload = str(len(val))
+		while len(payload)<8:payload = '0' + payload
 		print(payload)
 		payload += val[0:120]
 		conn.send(payload)
-	payload = len(val)
+		val = val[120:]
+		conn.recv(8)
+	payload = str(len(val))
+	while len(payload)<8:payload = '0' + payload
 	print(payload)
 	payload += val
+	conn.send(payload)
 
-def getName(val):
+def getConfig(val):
 	f = open("names.json",'r')
 	names = json.loads(f.read())
 	return names[val]
 
 def getCode(name):
-	codeFiles = []
-	for i in name:
-		with open(i,'r') as f:
-			codeFiles.append((i,f.read))
-	return codeFiles
-	
+	return open(name,'r').read()
+
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
 s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
