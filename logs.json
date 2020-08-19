@@ -1,0 +1,216 @@
+{
+    "description": "OTA code updates to connected Citcuit Python devices.",
+    "name": "Automatic Fiesta!",
+    "path": "/home/toben/Code/ssg/automtic-fiesta",
+    "posts": [
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-10-13",
+            "message": "Conflicts: \tGlucose.py \tboot.py ",
+            "project": "automatic-fiesta",
+            "title": "Merge branch 'master' of https://github.com/Narcolapser/automatic-fiesta"
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-10-13",
+            "message": "I've appearently made changes in to places. woops.",
+            "project": "automatic-fiesta",
+            "title": "I've appearently made changes in to places. woops."
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-06-02",
+            "message": "Error in formatting, now it has the list as it is supposed to.",
+            "project": "automatic-fiesta",
+            "title": "Update README.md"
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-06-03",
+            "message": "But buggy as hell and uses way to much memory. Much room for improvement. ",
+            "project": "automatic-fiesta",
+            "title": "Beta 1. The system is feature complete."
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-06-01",
+            "message": "There is a lot to do to hash it out and make it more robust and have better performance. But it is feature complete with a telnet and web server that are both simple to use and extendable.\n\nTO THE KING! ",
+            "project": "automatic-fiesta",
+            "title": "Automatic fiesta is at it's first beta."
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-31",
+            "message": "This is the last big piece of the Automatic Fiesta system. With this in place, writing software that can make your nodes respond to web requests will be a sinch! A fair bit of it can be just pulled from TelnetFiesta, so I'm already a good ways into this process. But because telnet and ordinary http requests function quite differently I will have to rework a fair bit of it. But progress none the less! It shouldn't be to much longer now before I have a full functional system. w00t w00t! ",
+            "project": "automatic-fiesta",
+            "title": "Started work on AF's web server."
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-31",
+            "message": "I can say pretty confidentally that telnet is up and running. this is excellent news! Now the principles I have practiced with that server I can make use of in making the web sever. ",
+            "project": "automatic-fiesta",
+            "title": "Telnet is functional!"
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-31",
+            "message": "Got basic telnet up and running. mostly. Something seems a little odd with it right now since it is complaining that there is a syntax error on the first line after I added a bunch of comments. I need to fiddle a little and see what is wrong, but for now I want to save the work as it is so I don't loose it. ",
+            "project": "automatic-fiesta",
+            "title": "Added Telnet."
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-27",
+            "message": "",
+            "project": "automatic-fiesta",
+            "title": "Fixed some problems with the distribution server crashing. And"
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-27",
+            "message": "cause it is getting large. I would like a utility to help with that process but I think I'll just have to suffer for now.\n\nThe boot script needs some polish yet. And I'd like to try and clean up some of that excess memory usage. ",
+            "project": "automatic-fiesta",
+            "title": "Got multiple files being transfered up and running. I'm running"
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-24",
+            "message": "Merge branch 'master' of https://github.com/Narcolapser/automatic-fiesta",
+            "project": "automatic-fiesta",
+            "title": "Merge branch 'master' of https://github.com/Narcolapser/automatic-fiesta"
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-23",
+            "message": "Specifically making it so that multi files can be recieved. Still needs a fair bit of work. ",
+            "project": "automatic-fiesta",
+            "title": "Work on the boot script to make it more flexible in reciving files."
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-24",
+            "message": "I'm setting it up to have a solid system for transfering files and full configurations to each node. But still needs some work. ",
+            "project": "automatic-fiesta",
+            "title": "Made more improvements on the server's file transfer."
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-23",
+            "message": "I need to push this though so I can test it on the server. ",
+            "project": "automatic-fiesta",
+            "title": "Some new improvements to transfering files."
+        },
+        {
+            "author": "Narcolapser",
+            "branch": "master",
+            "date": "2016-05-22",
+            "message": "This also actually brings with it a need to setup a configuration system in general. Something that can specify what each nodes files are, but also allow for extra features, such as the Node's name. ",
+            "project": "automatic-fiesta",
+            "title": "Started work on multi file configurations."
+        },
+        {
+            "author": "Narcolapser",
+            "branch": "master",
+            "date": "2016-05-22",
+            "message": "",
+            "project": "automatic-fiesta",
+            "title": "Updated MAC address fetching. Should make the system work as"
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-11",
+            "message": "I forgot it needed to be called \"README.md\"",
+            "project": "automatic-fiesta",
+            "title": "I forgot it needed to be called \"README.md\""
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-11",
+            "message": "OH COME ON! work markdown work!",
+            "project": "automatic-fiesta",
+            "title": "OH COME ON! work markdown work!"
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-11",
+            "message": "Update README",
+            "project": "automatic-fiesta",
+            "title": "Update README"
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-11",
+            "message": "Some day I hope to be ok.",
+            "project": "automatic-fiesta",
+            "title": "I SUCK AT MARKDOWN"
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-11",
+            "message": "Someone on reddit showed interest. I figured I should clean it up a bit.",
+            "project": "automatic-fiesta",
+            "title": "Gave AF a decent read me."
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-11",
+            "message": "Conflicts: \tFructose \tGlucose ",
+            "project": "automatic-fiesta",
+            "title": "Merge branch 'master' of https://github.com/Narcolapser/automatic-fiesta"
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-11",
+            "message": "",
+            "project": "automatic-fiesta",
+            "title": "Updated the boot file a little to make it run more smoothly. It now knows when"
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-11",
+            "message": "am using. Also, a names.json file as an \"example\" as well. Updated The server a little as I fine tune this. ",
+            "project": "automatic-fiesta",
+            "title": "Updated the server script a little bit and added examples of nodes"
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-06",
+            "message": " woohoo! ",
+            "project": "automatic-fiesta",
+            "title": "I've got the basic idea up and running. The server will provide"
+        },
+        {
+            "author": "Toben Archer",
+            "branch": "master",
+            "date": "2016-05-06",
+            "message": "Initial commit",
+            "project": "automatic-fiesta",
+            "title": "Initial commit"
+        }
+    ],
+    "url": "/automatic-fiesta"
+}
